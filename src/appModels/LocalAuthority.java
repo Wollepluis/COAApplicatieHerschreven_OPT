@@ -28,6 +28,6 @@ public class LocalAuthority {
     public LocalAuthority(String name, int population) {
         this.setName(name);
         this.setPopulation(population);
-        asylumCentres = new ArrayList<>();
+        this.asylumCentres = new ArrayList<>();
     }
 }
