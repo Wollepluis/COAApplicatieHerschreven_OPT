@@ -5,5 +5,8 @@ import java.util.ArrayList;
 public class Menu {
 
     private String title;
-    private ArrayList<MenuChoice> menuchoices;
+
+    private ArrayList<MenuChoice> menuChoices;
+
+
 }
