@@ -7,7 +7,7 @@ public class LocalAuthority {
     private String name;
     private int population;
 
-    private final ArrayList<AsylumCentre> asylumCentres = new ArrayList<>();
+    private final ArrayList<AsylumCentre> asylumCentres;
 
     public void setName(String name) {
         this.name = name;
@@ -28,5 +28,6 @@ public class LocalAuthority {
     public LocalAuthority(String name, int population) {
         this.setName(name);
         this.setPopulation(population);
+        asylumCentres = new ArrayList<>();
     }
 }

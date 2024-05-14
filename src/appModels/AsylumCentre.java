@@ -12,7 +12,7 @@ public class AsylumCentre {
     private int houseNumber;
     private int availabilityNumber;
 
-    ArrayList<Refugee> refugees = new ArrayList<>();
+    ArrayList<Refugee> refugees;
 
     public void setLocalAuthority(LocalAuthority localAuthority) {
         this.localAuthority = localAuthority;
@@ -60,5 +60,6 @@ public class AsylumCentre {
         this.setStreetName(streetName);
         this.setHouseNumber(houseNumber);
         this.setAvailabilityNumber(availabilityNumber);
+        this.refugees = new ArrayList<>();
     }
 }
