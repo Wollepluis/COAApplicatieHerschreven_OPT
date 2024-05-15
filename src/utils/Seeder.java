@@ -1,6 +1,18 @@
+package utils;
+
+import appModels.*;
+import menu.*;
+import menu.actions.*;
+import userClasses.*;
+
+import java.util.ArrayList;
+
 public class Seeder {
 
     private static Seeder instance = null;
+
+    private ArrayList<Menu> menus;
+    private ArrayList<User> users;
 
     private void initialize() {
 
