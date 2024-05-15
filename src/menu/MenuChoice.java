@@ -2,7 +2,7 @@ package menu;
 
 import menu.actions.IAction;
 
-public abstract class MenuChoice {
+public class MenuChoice {
 
     private int choice;
     private String title;
