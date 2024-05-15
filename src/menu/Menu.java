@@ -3,25 +3,54 @@ package menu;
 import utils.MyScanner;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Menu {
 
     private String title;
-
-    private final ArrayList<MenuChoice> menuChoices;
+    private int lastChoice;
+    private ArrayList<MenuChoice> menuChoices;
 
     public void setTitle(String title) {
         this.title = title;
     }
 
+    private void setLastChoice(int lastChoice) {
+        this.lastChoice = lastChoice;
+    }
+
+    private void resetLastChoice() {
+        setLastChoice(-1);
+    }
+
+    public void resetMenuChoice() {
+        menuChoices = new ArrayList<>();
+        resetLastChoice();
+    }
+
+    public int getLastChoice() {
+        return this.lastChoice;
+    }
+
     public Menu(String title) {
         this.setTitle(title);
-        this.menuChoices = new ArrayList<>();
+        this.resetMenuChoice();
+        this.resetLastChoice();
     }
 
     public void addMenuChoice(MenuChoice mc) {
         menuChoices.add(mc);
+        mc.setChoice(menuChoices.size());
+    }
+
+    public MenuChoice getRightMenuChoice(int choice) {
+
+        for (MenuChoice mc : menuChoices) {
+
+            if (mc.getChoice() == choice) {
+                return mc;
+            }
+        }
+        return null;
     }
 
     public void showMenu() {
@@ -32,7 +61,16 @@ public class Menu {
             mc.showMenuChoice();
         }
 
+        System.out.println();
         System.out.print("Choice: ");
-        int choice = MyScanner.nextInt();
+        setLastChoice(MyScanner.nextInt());
+        MenuChoice mc = getRightMenuChoice(getLastChoice());
+
+        if (mc != null) {
+            mc.execute();
+        }
+        else {
+            System.out.println("Invalid Choice");
+        }
     }
 }

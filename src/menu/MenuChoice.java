@@ -2,14 +2,17 @@ package menu;
 
 import menu.actions.IAction;
 
-public class MenuChoice {
+public abstract class MenuChoice {
 
-    private int index;
+    private int choice;
     private String title;
-    IAction action;
+    private IAction action;
 
-    public void setIndex(int index) {
-        this.index = index;
+    public void setChoice(int choice) {
+        
+        if ((choice == -1) || (this.choice == -1)) {
+            this.choice = choice;
+        }
     }
 
     public void setTitle(String title) {
@@ -20,17 +23,22 @@ public class MenuChoice {
         this.action = action;
     }
 
-    public MenuChoice(int index, String title, IAction action) {
-        this.setIndex(index);
+    public int getChoice() {
+        return this.choice;
+    }
+
+    public MenuChoice(int choice, String title, IAction action) {
+        this.setChoice(choice);
         this.setTitle(title);
         this.setAction(action);
     }
 
     public void showMenuChoice() {
-        System.out.printf("[%d] %s%n", this.index, this.title);
+        System.out.printf("[%d] %s%n", this.choice, this.title);
     }
 
     public void execute() {
+
         if (action != null) {
             action.execute();
         }
