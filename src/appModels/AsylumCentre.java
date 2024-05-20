@@ -1,7 +1,5 @@
 package appModels;
 
-import userClasses.Refugee;
-
 import java.util.ArrayList;
 
 public class AsylumCentre {
@@ -12,7 +10,7 @@ public class AsylumCentre {
     private int houseNumber;
     private int availabilityNumber;
 
-    ArrayList<Refugee> refugees;
+    private static final ArrayList<AsylumCentre> allAsylumCentres = new ArrayList<>();
 
     public void setLocalAuthority(LocalAuthority localAuthority) {
         this.localAuthority = localAuthority;
@@ -60,6 +58,21 @@ public class AsylumCentre {
         this.setStreetName(streetName);
         this.setHouseNumber(houseNumber);
         this.setAvailabilityNumber(availabilityNumber);
-        this.refugees = new ArrayList<>();
+    }
+
+    public static void addAsylumCentre(AsylumCentre asylumCentre) {
+        allAsylumCentres.add(asylumCentre);
+    }
+
+    public boolean hasAsylumCentre(String streetName) {
+
+        for (AsylumCentre a : allAsylumCentres) {
+
+            if (streetName.equalsIgnoreCase(a.getStreetName())) {
+                System.out.println("This asylum centre is already registered.");
+                return true;
+            }
+        }
+        return false;
     }
 }

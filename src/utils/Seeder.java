@@ -13,6 +13,9 @@ public class Seeder {
     private ArrayList<Menu> menus;
     private ArrayList<User> users;
 
+    private final ArrayList<Refugee> newRefugees = new ArrayList<>();
+    private final ArrayList<Refugee> registeredRefugees = new ArrayList<>();
+
     private void initialize() {
 
     }
