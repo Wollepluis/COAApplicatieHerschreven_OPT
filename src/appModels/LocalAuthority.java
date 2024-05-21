@@ -7,7 +7,6 @@ public class LocalAuthority {
     private String name;
     private int population;
 
-    private static final ArrayList<LocalAuthority> allLocalAuthorities = new ArrayList<>();
     private final ArrayList<AsylumCentre> localAsylumCentres = new ArrayList<>();
 
     public void setName(String name) {
@@ -31,30 +30,19 @@ public class LocalAuthority {
         this.setPopulation(population);
     }
 
-    public static LocalAuthority getLocalAuthority(String name) {
-
-        for (LocalAuthority l : allLocalAuthorities) {
-
-            if(name.equalsIgnoreCase(l.getName())) {
-                return l;
-            }
-        }
-        return null;
-    }
-
-    public void addAsylumCentre(AsylumCentre asylumCentre) {
-        localAsylumCentres.add(asylumCentre);
-    }
-
-    public boolean hasAsylumCentre(String streetName) {
+    public boolean hasLocalAsylum(String streetName) {
 
         for (AsylumCentre a : localAsylumCentres) {
 
             if (streetName.equalsIgnoreCase(a.getStreetName())) {
-                System.out.println("This asylum centre is already registered.");
+                System.out.println("This asylum has already been registered in this local authority.");
                 return true;
             }
         }
         return false;
+    }
+
+    public void addAsylumCentre(AsylumCentre asylumCentre) {
+        localAsylumCentres.add(asylumCentre);
     }
 }

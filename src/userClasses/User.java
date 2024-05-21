@@ -1,5 +1,7 @@
 package userClasses;
 
+import menu.Menu;
+
 public abstract class User {
 
     private String username;
@@ -15,4 +17,10 @@ public abstract class User {
     public User(String username) {
         this.setUsername(username);
     }
+
+    public boolean login(String username) {
+        return this.getUsername().equals(username);
+    }
+
+    public abstract Menu getMenu();
 }

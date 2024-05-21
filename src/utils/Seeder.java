@@ -13,9 +13,6 @@ public class Seeder {
     private ArrayList<Menu> menus;
     private ArrayList<User> users;
 
-    private final ArrayList<Refugee> newRefugees = new ArrayList<>();
-    private final ArrayList<Refugee> registeredRefugees = new ArrayList<>();
-
     private void initialize() {
 
     }
@@ -30,5 +27,16 @@ public class Seeder {
             instance = new Seeder();
         }
         return instance;
+    }
+
+    public User getUser(String username) {
+
+        for (User user : users) {
+
+            if (user.login(username)) {
+                return user;
+            }
+        }
+        return null;
     }
 }
