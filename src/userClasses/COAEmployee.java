@@ -1,6 +1,8 @@
 package userClasses;
 
 import menu.Menu;
+import utils.MenuType;
+import utils.Seeder;
 
 public class COAEmployee extends User{
 
@@ -10,6 +12,6 @@ public class COAEmployee extends User{
 
     @Override
     public Menu getMenu() {
-        return
+        return Seeder.getInstance().getMenu(MenuType.COA_EMPLOYEE);
     }
 }

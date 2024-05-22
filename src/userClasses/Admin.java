@@ -1,6 +1,8 @@
 package userClasses;
 
 import menu.Menu;
+import utils.MenuType;
+import utils.Seeder;
 
 public class Admin extends User {
 
@@ -10,6 +12,6 @@ public class Admin extends User {
 
     @Override
     public Menu getMenu() {
-
+        return Seeder.getInstance().getMenu(MenuType.ADMIN);
     }
 }

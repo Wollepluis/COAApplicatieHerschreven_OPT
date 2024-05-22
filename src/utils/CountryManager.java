@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class CountryManager {
 
-    private static final ArrayList<Country> countries = new ArrayList<>();
+    private static final ArrayList<Country> allCountries = new ArrayList<>();
 
     public static boolean hasCountry(String name) {
 
-        for (Country c : countries) {
+        for (Country c : allCountries) {
 
             if (name.equalsIgnoreCase(c.getName())) {
                 System.out.println("This country is already registered.");
@@ -21,6 +21,6 @@ public class CountryManager {
     }
 
     public static void addCountry(Country country) {
-        countries.add(country);
+        allCountries.add(country);
     }
 }

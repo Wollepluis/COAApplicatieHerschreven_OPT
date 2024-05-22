@@ -28,9 +28,14 @@ public class MenuChoice {
     }
 
     public MenuChoice(int choice, String title, IAction action) {
+        this.setChoice(-1);
         this.setChoice(choice);
         this.setTitle(title);
         this.setAction(action);
+    }
+
+    public MenuChoice(String title, IAction action) {
+        this(-1, title, action);
     }
 
     public void showMenuChoice() {

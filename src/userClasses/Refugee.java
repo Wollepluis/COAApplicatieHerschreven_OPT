@@ -1,8 +1,11 @@
 package userClasses;
 
 import appModels.Country;
+import appModels.File;
 import appModels.Residence;
 import menu.Menu;
+import utils.MenuType;
+import utils.Seeder;
 
 public class Refugee extends User {
 
@@ -12,6 +15,7 @@ public class Refugee extends User {
     private boolean hasPermit;
     private String verdict;
     private Residence residence;
+    private File file;
 
     public void setName(String name) {
         this.name = name;
@@ -35,6 +39,10 @@ public class Refugee extends User {
 
     public void setResidence(Residence residence) {
         this.residence = residence;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 
     public String getName() {
@@ -61,12 +69,16 @@ public class Refugee extends User {
         return this.residence;
     }
 
+    public File getFile() {
+        return this.file;
+    }
+
     public Refugee(String username) {
         super(username);
     }
 
     @Override
     public Menu getMenu() {
-        return
+        return Seeder.getInstance().getMenu(MenuType.REFUGEE);
     }
 }

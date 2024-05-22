@@ -8,7 +8,7 @@ public class AsylumManager {
 
     private static final ArrayList<AsylumCentre> allAsylumCentres = new ArrayList<>();
 
-    public boolean hasAsylumCentre(String streetName) {
+    public static boolean hasAsylumCentre(String streetName) {
 
         for (AsylumCentre a : allAsylumCentres) {
 

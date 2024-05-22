@@ -1,5 +1,7 @@
 package appModels;
 
+import userClasses.Refugee;
+
 import java.util.ArrayList;
 
 public class AsylumCentre {
@@ -9,6 +11,8 @@ public class AsylumCentre {
     private String streetName;
     private int houseNumber;
     private int availabilityNumber;
+
+    private static ArrayList<Refugee> residedRefugees = new ArrayList<>();
 
     public void setLocalAuthority(LocalAuthority localAuthority) {
         this.localAuthority = localAuthority;

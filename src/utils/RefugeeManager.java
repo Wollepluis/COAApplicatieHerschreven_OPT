@@ -6,26 +6,69 @@ import java.util.ArrayList;
 
 public class RefugeeManager {
 
-    private final ArrayList<Refugee> newRefugees = new ArrayList<>();
-    private final ArrayList<Refugee> registeredRefugees = new ArrayList<>();
+    private static final ArrayList<Refugee> newRefugees = new ArrayList<>();
+    private static final ArrayList<Refugee> registeredRefugees = new ArrayList<>();
 
-    public boolean checkIfRegistered(String name) {
+    public static ArrayList<Refugee> getNewList() {
+        return newRefugees;
+    }
+
+    public static ArrayList<Refugee> getRegisteredList() {
+        return registeredRefugees;
+    }
+
+    public static Refugee getNewRefugee(String name) {
+
+        for (Refugee r : newRefugees) {
+
+            if (name.equalsIgnoreCase(r.getName())) {
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public static Refugee getRegisteredRefugee(String name) {
 
         for (Refugee r : registeredRefugees) {
 
             if (name.equalsIgnoreCase(r.getName())) {
-                System.out.println("This refugee has already been registered.");
-                return true;
+                return r;
             }
         }
-        return false;
+        return null;
     }
 
-    public void registerRefugee(Refugee refugee) {
-        registeredRefugees.add(refugee);
+    public static int checkRegistration(String name) {
+
+        for (Refugee r : registeredRefugees) {
+
+            if (name.equalsIgnoreCase(r.getName())) {
+                return 1;
+            }
+        }
+
+        for (Refugee r : newRefugees) {
+
+            if (name.equalsIgnoreCase(r.getName())) {
+                return 2;
+            }
+        }
+        return 0;
     }
 
-    public void addNewRefugee(Refugee refugee) {
+    public static void addNewRefugee(Refugee refugee) {
         newRefugees.add(refugee);
+    }
+
+    public static void registerRefugee(String name) {
+
+        for (Refugee r : newRefugees) {
+
+            if (name.equalsIgnoreCase(r.getName())) {
+                registeredRefugees.add(r);
+                newRefugees.remove(r);
+            }
+        }
     }
 }
