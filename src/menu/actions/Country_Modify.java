@@ -21,7 +21,7 @@ public class Country_Modify implements IAction {
             System.out.println("This country is not registered in the system.");
             return;
         }
-        CountryManager.setActiveCountry_Menu(name);
+        CountryManager.setActiveCountry(name);
         Seeder.getInstance().getMenu(MenuType.COUNTRY_MODIFY).setTitle("Modifying: " + capitalize(name));
         Seeder.getInstance().getMenu(MenuType.COUNTRY_MODIFY).showMenu();
     }
