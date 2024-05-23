@@ -6,15 +6,21 @@ import java.util.ArrayList;
 
 public class CountryManager {
 
-    private static String activeCountry;
+    private static Country activeCountry;
 
     private static final ArrayList<Country> allCountries = new ArrayList<>();
 
     public static void setActiveCountry(String activeCountry) {
-        CountryManager.activeCountry = activeCountry;
+
+        for (Country c : allCountries) {
+
+            if (activeCountry.equalsIgnoreCase(c.getName())) {
+                CountryManager.activeCountry = c;
+            }
+        }
     }
 
-    public static String getActiveCountry() {
+    public static Country getActiveCountry() {
         return activeCountry;
     }
 

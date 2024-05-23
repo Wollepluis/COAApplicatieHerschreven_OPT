@@ -18,7 +18,7 @@ public class Country_Add implements IAction{
 
         if (!CountryManager.hasCountry(name)) {
 
-            if (ClosedQuestion.question("Is this country considered 'safe'? [Y]es/[N]o")){
+            if (ClosedQuestion.question("Is this country considered 'safe'?")){
                 isSafe = true;
             }
             else {

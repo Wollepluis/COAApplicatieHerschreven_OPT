@@ -9,10 +9,10 @@ public class Country_ShowAll implements IAction {
 
     public String print(boolean isSafe) {
         if (isSafe) {
-            return "wel";
+            return " ";
         }
         else {
-            return "niet";
+            return " not ";
         }
     }
 
@@ -27,7 +27,7 @@ public class Country_ShowAll implements IAction {
 
             for (Country c : allCountries) {
 
-                System.out.printf("%s, is %s veilig.\n", c.getName(), print(c.getSafe()));
+                System.out.printf("%s, is%sconsidered safe.\n", c.getName(), print(c.getSafe()));
             }
             System.out.println("=====================");
         }

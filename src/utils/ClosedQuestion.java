@@ -10,7 +10,7 @@ public class ClosedQuestion {
             if (!choice.equals("<><><><><><><><><>")) {
                 System.out.println("Input a answer shown on screen.");
             }
-            System.out.println(question);
+            System.out.println(question +  " [Y]es/[N]o");
             choice = MyScanner.nextLine();
             System.out.println();
         }
