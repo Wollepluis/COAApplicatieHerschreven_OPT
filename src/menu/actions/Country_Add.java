@@ -24,7 +24,7 @@ public class Country_Add implements IAction{
             else {
                 isSafe = false;
             }
-            System.out.println("Country " + name + " successfully added!");
+            System.out.println(name + " successfully added!");
             CountryManager.addCountry(new Country(name, isSafe));
         }
         else {

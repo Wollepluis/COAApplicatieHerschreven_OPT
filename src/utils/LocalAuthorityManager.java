@@ -8,7 +8,7 @@ public class LocalAuthorityManager {
 
     private static final ArrayList<LocalAuthority> allLocalAuthorities = new ArrayList<>();
 
-    public boolean hasLocalAuthority(String name) {
+    public static boolean hasLocalAuthority(String name) {
 
         for (LocalAuthority l : allLocalAuthorities) {
 
@@ -20,7 +20,7 @@ public class LocalAuthorityManager {
         return false;
     }
 
-    public void addLocalAuthority(LocalAuthority localAuthority) {
+    public static void addLocalAuthority(LocalAuthority localAuthority) {
         allLocalAuthorities.add(localAuthority);
     }
 }
