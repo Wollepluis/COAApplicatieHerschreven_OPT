@@ -6,6 +6,7 @@ public class MenuChoice {
 
     private int choice;
     private String title;
+    private boolean extraWhiteLine;
     private IAction action;
 
     public void setChoice(int choice) {
@@ -19,6 +20,10 @@ public class MenuChoice {
         this.title = title;
     }
 
+    public void setExtraWhiteLine(boolean extraWhiteLine) {
+        this.extraWhiteLine = extraWhiteLine;
+    }
+
     public void setAction(IAction action) {
         this.action = action;
     }
@@ -27,18 +32,27 @@ public class MenuChoice {
         return this.choice;
     }
 
-    public MenuChoice(int choice, String title, IAction action) {
+    public MenuChoice(int choice, String title, boolean extraWhiteLine, IAction action) {
         this.setChoice(-1);
         this.setChoice(choice);
         this.setTitle(title);
+        this.setExtraWhiteLine(extraWhiteLine);
         this.setAction(action);
     }
 
+    public MenuChoice(int choice, String title, IAction action) {
+        this(-1, title, false, action);
+    }
+
     public MenuChoice(String title, IAction action) {
-        this(-1, title, action);
+        this(-1, title, false, action);
     }
 
     public void showMenuChoice() {
+
+        if (extraWhiteLine) {
+            System.out.println();
+        }
         System.out.printf("[%d] %s%n", this.choice, this.title);
     }
 

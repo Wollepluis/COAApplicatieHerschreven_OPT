@@ -70,7 +70,7 @@ public class Menu {
             mc.execute();
         }
         else {
-            System.out.println("Invalid Choice");
+            System.out.println("ERROR: Invalid Choice.");
         }
     }
 }

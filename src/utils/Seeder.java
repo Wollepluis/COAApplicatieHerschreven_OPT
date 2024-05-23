@@ -1,9 +1,8 @@
 package utils;
 
+import appModels.Country;
 import menu.*;
-import menu.actions.Country_Modify;
-import menu.actions.Exit;
-import menu.actions.Login;
+import menu.actions.*;
 import userClasses.*;
 
 import java.util.HashMap;
@@ -67,22 +66,46 @@ public class Seeder {
 
     private void initialize() {
 
+        CountryManager.addCountry(new Country("Ghana", false));
+        CountryManager.addCountry(new Country("Afghanistan", true));
+
         addUser(new Admin("admin"));
         addUser(new COAEmployee("coa"));
 
         this.menus = new HashMap<>();
 
+        MenuChoice login = new MenuChoice("Login", new Login());
+        MenuChoice logout = new MenuChoice("Logout", new Logout());
+        MenuChoice terug = new MenuChoice(9, "Back", true, new Return());
+        MenuChoice exit = new MenuChoice(9,"Exit", true, new Exit());
+
         //LOGGED_OUT
         Menu loggedOut = new Menu("Not logged in");
-        MenuChoice login = new MenuChoice("Login", new Login());
-        MenuChoice exit = new MenuChoice("Exit", new Exit());
         loggedOut.addMenuChoice(login);
         loggedOut.addMenuChoice(exit);
         menus.put(MenuType.LOGGED_OUT, loggedOut);
 
         //ADMIN
         Menu admin = new Menu("Logged in as: Admin");
-        admin.addMenuChoice(new MenuChoice("Manage Countries", new Country_Modify()));
+        admin.addMenuChoice(new MenuChoice("Manage Countries", new Country_Manage()));
+        admin.addMenuChoice(new MenuChoice("Manage local authorities", new LocalAuthority_Modify()));
+        admin.addMenuChoice(terug);
+        menus.put(MenuType.ADMIN, admin);
+
+        //COUNTRYMANAGE
+        Menu manageCountry = new Menu("Manage Country");
+        manageCountry.addMenuChoice(new MenuChoice("Show all countries", new Country_ShowAll()));
+        manageCountry.addMenuChoice(new MenuChoice("Add new country", new Country_Add()));
+        manageCountry.addMenuChoice(new MenuChoice("Modify existing country", new Country_Modify()));
+        manageCountry.addMenuChoice(terug);
+        menus.put(MenuType.COUNTRY_MANAGE, manageCountry);
+
+        //COUNTRYMODIFY
+        Menu modifyCountry = new Menu("");
+        modifyCountry.addMenuChoice(new MenuChoice("Change name", new Country_NameChange()));
+        modifyCountry.addMenuChoice(new MenuChoice("Change safety", new Country_SafetyChange()));
+        modifyCountry.addMenuChoice(terug);
+        menus.put(MenuType.COUNTRY_MODIFY, modifyCountry);
     }
 
     private Seeder() {

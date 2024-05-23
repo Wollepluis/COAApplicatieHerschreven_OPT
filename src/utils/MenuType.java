@@ -5,6 +5,7 @@ public enum MenuType {
     ADMIN,
     COA_EMPLOYEE,
     REFUGEE,
+    COUNTRY_MANAGE,
     COUNTRY_MODIFY
 
 }
