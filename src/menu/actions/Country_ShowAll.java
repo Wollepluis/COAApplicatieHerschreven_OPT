@@ -1,7 +1,7 @@
 package menu.actions;
 
 import appModels.Country;
-import utils.CountryManager;
+import utils.CountryController;
 
 import java.util.ArrayList;
 
@@ -18,7 +18,10 @@ public class Country_ShowAll implements IAction {
 
     @Override
     public void execute() {
-        ArrayList<Country> allCountries = CountryManager.getAllCountries();
+
+        CountryController countryController = CountryController.getInstance();
+
+        ArrayList<Country> allCountries = countryController.getAllCountries();
 
         if (!allCountries.isEmpty()) {
 

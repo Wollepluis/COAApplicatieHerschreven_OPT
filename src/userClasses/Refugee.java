@@ -1,7 +1,6 @@
 package userClasses;
 
 import appModels.Country;
-import appModels.File;
 import appModels.Residence;
 import menu.Menu;
 import utils.MenuType;

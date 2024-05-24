@@ -1,11 +1,7 @@
 package menu.actions;
 
-import appModels.Country;
 import utils.ClosedQuestion;
-import utils.CountryManager;
-import utils.MyScanner;
-
-import java.util.ArrayList;
+import utils.CountryController;
 
 public class Country_SafetyChange implements IAction {
 
@@ -22,11 +18,13 @@ public class Country_SafetyChange implements IAction {
     @Override
     public void execute() {
 
-        String countryName = CountryManager.getActiveCountry().getName();
-        boolean safety = CountryManager.getActiveCountry().getSafe();
+        CountryController countryController = CountryController.getInstance();
+
+        String countryName = countryController.getActiveCountry().getName();
+        boolean safety = countryController.getActiveCountry().getSafe();
 
         if (ClosedQuestion.question("Do you want to switch " + countryName + "'s safety from '" + printSafety(safety) + "' to '" + printSafety(!safety) + "'?")){
-            CountryManager.getActiveCountry().setSafe(!safety);
+            countryController.getActiveCountry().setSafe(!safety);
             System.out.println(countryName + "'s safety set to '" + printSafety(!safety) + "'.");
         }
         else {

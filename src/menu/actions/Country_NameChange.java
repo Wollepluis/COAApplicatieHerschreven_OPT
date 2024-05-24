@@ -1,7 +1,7 @@
 package menu.actions;
 
 import appModels.Country;
-import utils.CountryManager;
+import utils.CountryController;
 import utils.MyScanner;
 
 import java.util.ArrayList;
@@ -11,6 +11,8 @@ public class Country_NameChange implements IAction {
     @Override
     public void execute() {
 
+        CountryController countryController = CountryController.getInstance();
+
         System.out.print("Enter new name of country: ");
         String newName = MyScanner.nextLine();
 
@@ -18,11 +20,11 @@ public class Country_NameChange implements IAction {
             System.out.println("Name change canceled.");
         }
         else {
-            ArrayList<Country> allCountries = CountryManager.getAllCountries();
+            ArrayList<Country> allCountries = countryController.getAllCountries();
 
             for (Country c : allCountries) {
 
-                if (CountryManager.getActiveCountry().equals(c.getName())) {
+                if (countryController.getActiveCountry().equals(c.getName())) {
                     c.setName(newName);
                 }
             }

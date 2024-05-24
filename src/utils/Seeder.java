@@ -66,13 +66,13 @@ public class Seeder {
 
     private void initialize() {
 
-        CountryManager.addCountry(new Country("Ghana", false));
-        CountryManager.addCountry(new Country("Afghanistan", true));
+        CountryController countryController = CountryController.getInstance();
+
+        countryController.addCountry(new Country("Ghana", false));
+        countryController.addCountry(new Country("Afghanistan", true));
 
         addUser(new Admin("admin"));
         addUser(new COAEmployee("coa"));
-
-        this.menus = new HashMap<>();
 
         MenuChoice login = new MenuChoice("Login", new Login());
         MenuChoice logout = new MenuChoice("Logout", new Logout());
@@ -110,6 +110,7 @@ public class Seeder {
 
     private Seeder() {
         this.users = new ArrayList<>();
+        this.menus = new HashMap<>();
         initialize();
     }
 }

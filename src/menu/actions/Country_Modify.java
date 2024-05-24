@@ -1,6 +1,6 @@
 package menu.actions;
 
-import utils.CountryManager;
+import utils.CountryController;
 import utils.MenuType;
 import utils.MyScanner;
 import utils.Seeder;
@@ -14,14 +14,16 @@ public class Country_Modify implements IAction {
     @Override
     public void execute() {
 
+        CountryController countryController = CountryController.getInstance();
+
         System.out.println("What country would you like to modify?");
         String name = MyScanner.nextLine();
 
-        if (!CountryManager.hasCountry(name)) {
+        if (!countryController.countryExists(name)) {
             System.out.println("This country is not registered in the system.");
             return;
         }
-        CountryManager.setActiveCountry(name);
+        countryController.setActiveCountry(name);
         Seeder.getInstance().getMenu(MenuType.COUNTRY_MODIFY).setTitle("Modifying: " + capitalize(name));
         Seeder.getInstance().getMenu(MenuType.COUNTRY_MODIFY).showMenu();
     }
