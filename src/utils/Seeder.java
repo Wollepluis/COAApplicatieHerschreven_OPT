@@ -1,6 +1,6 @@
 package utils;
 
-import appModels.Country;
+import appModels.Land;
 import menu.*;
 import menu.actions.*;
 import userClasses.*;
@@ -13,8 +13,8 @@ public class Seeder {
 
     private static Seeder instance = null;
 
-    private Map<MenuType, Menu> menus;
-    private ArrayList<User> users;
+    private final Map<MenuType, Menu> menus;
+    private final ArrayList<Gebruiker> gebruikers;
 
 
     public static Seeder getInstance() {
@@ -25,26 +25,26 @@ public class Seeder {
         return instance;
     }
 
-    public User getUser(String username) {
+    public Gebruiker getGebruiker(String gebruikersnaam) {
 
-        for (User user : users) {
+        for (Gebruiker gebruiker : this.gebruikers) {
 
-            if (user.login(username)) {
-                return user;
+            if (gebruiker.login(gebruikersnaam)) {
+                return gebruiker;
             }
         }
         return null;
     }
 
-    private void addUser(User user) {
+    private void voegGebruikerToe(Gebruiker gebruiker) {
 
-        for (User u : users) {
+        for (Gebruiker g : gebruikers) {
 
-            if (u.getUsername().equals(user.getUsername())) {
+            if (g.getGebruikersnaam().equals(gebruiker.getGebruikersnaam())) {
                 return;
             }
         }
-        users.add(user);
+        gebruikers.add(gebruiker);
     }
 
     public Menu getMenu() {
@@ -55,8 +55,8 @@ public class Seeder {
             return menus.get(MenuType.LOGGED_OUT);
         }
         else {
-            User user = security.getActiveUser();
-            return user.getMenu();
+            Gebruiker gebruiker = security.getActiveUser();
+            return gebruiker.getMenu();
         }
     }
 
@@ -66,50 +66,54 @@ public class Seeder {
 
     private void initialize() {
 
-        CountryController countryController = CountryController.getInstance();
+        Land_Controller landController = Land_Controller.getInstance();
 
-        countryController.addCountry(new Country("Ghana", false));
-        countryController.addCountry(new Country("Afghanistan", true));
+        landController.voegLandToe(new Land("Ghana", false));
+        landController.voegLandToe(new Land("Afghanistan", true));
 
-        addUser(new Admin("admin"));
-        addUser(new COAEmployee("coa"));
+        voegGebruikerToe(new Beheerder("beheerder"));
+        voegGebruikerToe(new COAMedewerker("coa"));
 
-        MenuChoice login = new MenuChoice("Login", new Login());
-        MenuChoice logout = new MenuChoice("Logout", new Logout());
-        MenuChoice terug = new MenuChoice(9, "Back", true, new Return());
-        MenuChoice exit = new MenuChoice(9,"Exit", true, new Exit());
+        Menukeuze login = new Menukeuze("Login", new Login());
+        Menukeuze terug = new Menukeuze(9, "Terug", true, new Return());
+        Menukeuze exit = new Menukeuze(9,"Exit", true, new Exit());
 
         //LOGGED_OUT
-        Menu loggedOut = new Menu("Not logged in");
-        loggedOut.addMenuChoice(login);
-        loggedOut.addMenuChoice(exit);
-        menus.put(MenuType.LOGGED_OUT, loggedOut);
+        Menu uitgelogd = new Menu("Niet ingelogd");
+        uitgelogd.voegMenukeuzeToe(login);
+        uitgelogd.voegMenukeuzeToe(exit);
+        menus.put(MenuType.LOGGED_OUT, uitgelogd);
 
         //ADMIN
-        Menu admin = new Menu("Logged in as: Admin");
-        admin.addMenuChoice(new MenuChoice("Manage Countries", new Country_Manage()));
-        admin.addMenuChoice(new MenuChoice("Manage local authorities", new LocalAuthority_Modify()));
-        admin.addMenuChoice(terug);
-        menus.put(MenuType.ADMIN, admin);
+        Menu admin = new Menu(printUser());
+        admin.voegMenukeuzeToe(new Menukeuze("Landen beheren", new Land_Beheer()));
+        admin.voegMenukeuzeToe(new Menukeuze("Gemeente beheren", new Gemeente_Wijzig()));
+        admin.voegMenukeuzeToe(terug);
+        menus.put(MenuType.BEHEERDER, admin);
 
         //COUNTRYMANAGE
-        Menu manageCountry = new Menu("Manage Country");
-        manageCountry.addMenuChoice(new MenuChoice("Show all countries", new Country_ShowAll()));
-        manageCountry.addMenuChoice(new MenuChoice("Add new country", new Country_Add()));
-        manageCountry.addMenuChoice(new MenuChoice("Modify existing country", new Country_Modify()));
-        manageCountry.addMenuChoice(terug);
-        menus.put(MenuType.COUNTRY_MANAGE, manageCountry);
+        Menu manageCountry = new Menu("Landen beheren");
+        manageCountry.voegMenukeuzeToe(new Menukeuze("Alle geregistreerde landen", new Land_ShowAll()));
+        manageCountry.voegMenukeuzeToe(new Menukeuze("Voeg nieuw land toe", new Land_voegToe()));
+        manageCountry.voegMenukeuzeToe(new Menukeuze("Wijzig geregistreerd land", new Land_Wijzig()));
+        manageCountry.voegMenukeuzeToe(terug);
+        menus.put(MenuType.LAND_BEHEER, manageCountry);
 
         //COUNTRYMODIFY
         Menu modifyCountry = new Menu("");
-        modifyCountry.addMenuChoice(new MenuChoice("Change name", new Country_NameChange()));
-        modifyCountry.addMenuChoice(new MenuChoice("Change safety", new Country_SafetyChange()));
-        modifyCountry.addMenuChoice(terug);
-        menus.put(MenuType.COUNTRY_MODIFY, modifyCountry);
+        modifyCountry.voegMenukeuzeToe(new Menukeuze("Naam Wijzigen", new Land_Wijzig_Naam()));
+        modifyCountry.voegMenukeuzeToe(new Menukeuze("Veiligheid aanpassen", new Land_Wijzig_Veiligheid()));
+        modifyCountry.voegMenukeuzeToe(terug);
+        menus.put(MenuType.LAND_WIJZIG, modifyCountry);
+    }
+
+    private String printUser() {
+        Security security = Security.getInstance();
+        return "Ingelogd als " + security.getActiveUser().getGebruikersnaam();
     }
 
     private Seeder() {
-        this.users = new ArrayList<>();
+        this.gebruikers = new ArrayList<>();
         this.menus = new HashMap<>();
         initialize();
     }

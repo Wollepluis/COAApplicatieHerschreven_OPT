@@ -1,14 +1,14 @@
 package utils;
 
-import userClasses.User;
+import userClasses.Gebruiker;
 
 public class Security {
 
     private static Security instance = null;
-    private User activeUser;
+    private Gebruiker activeGebruiker;
 
-    private void setActiveUser(User user) {
-        this.activeUser = user;
+    private void setActiveUser(Gebruiker gebruiker) {
+        this.activeGebruiker = gebruiker;
     }
 
     private Security() {
@@ -23,15 +23,15 @@ public class Security {
         return instance;
     }
 
-    public User getActiveUser() {
-        return activeUser;
+    public Gebruiker getActiveUser() {
+        return activeGebruiker;
     }
 
     public boolean isLoggedIn() {
-        return activeUser != null;
+        return activeGebruiker != null;
     }
 
-    public User login() {
+    public Gebruiker login() {
         Seeder seeder = Seeder.getInstance();
 
         boolean loggedIn = false;
@@ -40,11 +40,11 @@ public class Security {
 
         while (!loggedIn) {
             String username = MyScanner.nextLine();
-            User user = seeder.getUser(username);
+            Gebruiker gebruiker = seeder.getGebruiker(username);
 
-            if (user != null) {
-                setActiveUser(user);
-                return user;
+            if (gebruiker != null) {
+                setActiveUser(gebruiker);
+                return gebruiker;
             }
             System.out.println("Unknown user. Try again.");
         }

@@ -7,7 +7,7 @@ public class Main {
 
         while(true) {
             Menu menu = seeder.getMenu();
-            menu.showMenu();
+            menu.toonMenu();
         }
     }
 }

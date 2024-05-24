@@ -1,6 +1,6 @@
 package menu.actions;
 
-public class LocalAuthority_Modify implements IAction {
+public class Gemeente_Wijzig implements IAction {
 
     @Override
     public void execute(){}

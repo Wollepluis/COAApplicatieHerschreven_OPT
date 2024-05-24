@@ -6,71 +6,71 @@ import java.util.ArrayList;
 
 public class Menu {
 
-    private String title;
-    private int lastChoice;
-    private ArrayList<MenuChoice> menuChoices;
+    private String titel;
+    private int laatsteKeuze;
+    private ArrayList<Menukeuze> menukeuzes;
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitel(String titel) {
+        this.titel = titel;
     }
 
-    private void setLastChoice(int lastChoice) {
-        this.lastChoice = lastChoice;
+    private void setLaatsteKeuze(int laatsteKeuze) {
+        this.laatsteKeuze = laatsteKeuze;
     }
 
-    private void resetLastChoice() {
-        setLastChoice(-1);
+    private void resetLaatsteKeuze() {
+        setLaatsteKeuze(-1);
     }
 
-    public void resetMenuChoice() {
-        menuChoices = new ArrayList<>();
-        resetLastChoice();
+    public void resetMenukeuze() {
+        menukeuzes = new ArrayList<>();
+        resetLaatsteKeuze();
     }
 
-    public int getLastChoice() {
-        return this.lastChoice;
+    public int getLaatsteKeuze() {
+        return this.laatsteKeuze;
     }
 
-    public Menu(String title) {
-        this.setTitle(title);
-        this.resetMenuChoice();
-        this.resetLastChoice();
+    public Menu(String titel) {
+        this.setTitel(titel);
+        this.resetMenukeuze();
+        this.resetLaatsteKeuze();
     }
 
-    public void addMenuChoice(MenuChoice mc) {
-        menuChoices.add(mc);
-        mc.setChoice(menuChoices.size());
+    public void voegMenukeuzeToe(Menukeuze menukeuze) {
+        menukeuzes.add(menukeuze);
+        menukeuze.setKeuze(menukeuzes.size());
     }
 
-    public MenuChoice getRightMenuChoice(int choice) {
+    public Menukeuze getJuisteMenukeuze(int keuze) {
 
-        for (MenuChoice mc : menuChoices) {
+        for (Menukeuze menukeuze : menukeuzes) {
 
-            if (mc.getChoice() == choice) {
-                return mc;
+            if (menukeuze.getKeuze() == keuze) {
+                return menukeuze;
             }
         }
         return null;
     }
 
-    public void showMenu() {
+    public void toonMenu() {
         System.out.println();
-        System.out.printf("=== %s%n", this.title);
+        System.out.printf("=== %s%n", this.titel);
 
-        for (MenuChoice mc : menuChoices) {
-            mc.showMenuChoice();
+        for (Menukeuze menukeuze : menukeuzes) {
+            menukeuze.toonMenukeuze();
         }
 
         System.out.println();
-        System.out.print("Choice: ");
-        setLastChoice(MyScanner.nextInt());
-        MenuChoice mc = getRightMenuChoice(getLastChoice());
+        System.out.print("Keuze: ");
+        setLaatsteKeuze(MyScanner.nextInt());
+        Menukeuze menukeuze = getJuisteMenukeuze(getLaatsteKeuze());
 
-        if (mc != null) {
-            mc.execute();
+        if (menukeuze != null) {
+            menukeuze.execute();
         }
         else {
-            System.out.println("ERROR: Invalid Choice.");
+            System.out.println("ERROR: Ongeldige keuze.");
         }
     }
 }
