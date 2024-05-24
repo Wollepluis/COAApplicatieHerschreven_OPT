@@ -17,7 +17,6 @@ public class Land_Wijzig_Veiligheid implements IAction {
 
     @Override
     public void execute() {
-
         Land_Controller landController = Land_Controller.getInstance();
 
         String landNaam = landController.getActiefLand().getNaam();

@@ -6,6 +6,8 @@ public enum MenuType {
     COA_MEDEWERKER,
     VLUCHTELING,
     LAND_BEHEER,
-    LAND_WIJZIG
+    LAND_WIJZIG,
+    GEMEENTE_BEHEER,
+    GEMEENTE_WIJZIG
 
 }

@@ -1,5 +1,6 @@
 package utils;
 
+import appModels.Gemeente;
 import appModels.Land;
 import menu.*;
 import menu.actions.*;
@@ -55,7 +56,7 @@ public class Seeder {
             return menus.get(MenuType.LOGGED_OUT);
         }
         else {
-            Gebruiker gebruiker = security.getActiveUser();
+            Gebruiker gebruiker = security.getActiveGebruiker();
             return gebruiker.getMenu();
         }
     }
@@ -67,9 +68,14 @@ public class Seeder {
     private void initialize() {
 
         Land_Controller landController = Land_Controller.getInstance();
+        Gemeente_Controller gemeenteController = Gemeente_Controller.getInstance();
 
         landController.voegLandToe(new Land("Ghana", false));
         landController.voegLandToe(new Land("Afghanistan", true));
+
+        gemeenteController.voegGemeenteToe(new Gemeente("Amsterdam",918000));
+        gemeenteController.voegGemeenteToe(new Gemeente("Rotterdam",663000));
+        gemeenteController.voegGemeenteToe(new Gemeente("Den Haag", 562000));
 
         voegGebruikerToe(new Beheerder("beheerder"));
         voegGebruikerToe(new COAMedewerker("coa"));
@@ -84,32 +90,35 @@ public class Seeder {
         uitgelogd.voegMenukeuzeToe(exit);
         menus.put(MenuType.LOGGED_OUT, uitgelogd);
 
-        //ADMIN
-        Menu admin = new Menu(printUser());
+        //BEHEERDER
+        Menu admin = new Menu("");
         admin.voegMenukeuzeToe(new Menukeuze("Landen beheren", new Land_Beheer()));
-        admin.voegMenukeuzeToe(new Menukeuze("Gemeente beheren", new Gemeente_Wijzig()));
+        admin.voegMenukeuzeToe(new Menukeuze("Gemeente beheren", new Gemeente_Beheer()));
+       // admin.voegMenukeuzeToe(new Menukeuze("AZCs beheren", new AZC_Beheer()));
         admin.voegMenukeuzeToe(terug);
         menus.put(MenuType.BEHEERDER, admin);
 
-        //COUNTRYMANAGE
-        Menu manageCountry = new Menu("Landen beheren");
-        manageCountry.voegMenukeuzeToe(new Menukeuze("Alle geregistreerde landen", new Land_ShowAll()));
-        manageCountry.voegMenukeuzeToe(new Menukeuze("Voeg nieuw land toe", new Land_voegToe()));
-        manageCountry.voegMenukeuzeToe(new Menukeuze("Wijzig geregistreerd land", new Land_Wijzig()));
-        manageCountry.voegMenukeuzeToe(terug);
-        menus.put(MenuType.LAND_BEHEER, manageCountry);
+        //LAND_BEHEER
+        Menu beheerLand = new Menu("Landen beheren");
+        beheerLand.voegMenukeuzeToe(new Menukeuze("Alle geregistreerde landen tonen", new Land_ShowAll()));
+        beheerLand.voegMenukeuzeToe(new Menukeuze("Nieuw land toevoegen", new Land_voegToe()));
+        beheerLand.voegMenukeuzeToe(new Menukeuze("Geregistreerd land wijzigen", new Land_Wijzig()));
+        beheerLand.voegMenukeuzeToe(terug);
+        menus.put(MenuType.LAND_BEHEER, beheerLand);
 
-        //COUNTRYMODIFY
-        Menu modifyCountry = new Menu("");
-        modifyCountry.voegMenukeuzeToe(new Menukeuze("Naam Wijzigen", new Land_Wijzig_Naam()));
-        modifyCountry.voegMenukeuzeToe(new Menukeuze("Veiligheid aanpassen", new Land_Wijzig_Veiligheid()));
-        modifyCountry.voegMenukeuzeToe(terug);
-        menus.put(MenuType.LAND_WIJZIG, modifyCountry);
-    }
+        //LAND_WIJZIG
+        Menu wijzigLand = new Menu("");
+        wijzigLand.voegMenukeuzeToe(new Menukeuze("Naam Wijzigen", new Land_Wijzig_Naam()));
+        wijzigLand.voegMenukeuzeToe(new Menukeuze("Veiligheid aanpassen", new Land_Wijzig_Veiligheid()));
+        wijzigLand.voegMenukeuzeToe(terug);
+        menus.put(MenuType.LAND_WIJZIG, wijzigLand);
 
-    private String printUser() {
-        Security security = Security.getInstance();
-        return "Ingelogd als " + security.getActiveUser().getGebruikersnaam();
+        //GEMEENTE_BEHEER
+        Menu beheerGemeente = new Menu("Gemeentes beheren");
+        beheerGemeente.voegMenukeuzeToe(new Menukeuze("Alle geregistreerde gemeentes tonen", new Gemeente_showAll()));
+        beheerGemeente.voegMenukeuzeToe(new Menukeuze("Nieuwe gemeente toevoegen", new Gemeente_voegToe()));
+        beheerGemeente.voegMenukeuzeToe(terug);
+        menus.put(MenuType.GEMEENTE_BEHEER, beheerGemeente);
     }
 
     private Seeder() {

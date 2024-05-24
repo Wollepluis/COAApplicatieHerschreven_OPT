@@ -30,7 +30,7 @@ public class Land_ShowAll implements IAction {
 
             for (Land l : alleLanden) {
 
-                System.out.printf("%s [%s].\n", l.getNaam(), print(l.getVeilig()));
+                System.out.printf("%-15s [%s]\n", l.getNaam(), print(l.getVeilig()));
             }
             System.out.println("===================");
         }

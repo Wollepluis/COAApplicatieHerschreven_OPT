@@ -12,7 +12,7 @@ public class AZC {
     private int huisnummer;
     private int aantalPlaatsen;
 
-    private ArrayList<Vluchteling> gevestigdeVluchtelingen;
+    public ArrayList<Vluchteling> gevestigdeVluchtelingen;
 
     public void setGemeente(Gemeente gemeente) {
         this.gemeente = gemeente;

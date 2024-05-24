@@ -7,12 +7,12 @@ public class Security {
     private static Security instance = null;
     private Gebruiker activeGebruiker;
 
-    private void setActiveUser(Gebruiker gebruiker) {
+    private void setActieveGebruiker(Gebruiker gebruiker) {
         this.activeGebruiker = gebruiker;
     }
 
     private Security() {
-        setActiveUser(null);
+        setActieveGebruiker(null);
     }
 
     public static Security getInstance() {
@@ -23,7 +23,7 @@ public class Security {
         return instance;
     }
 
-    public Gebruiker getActiveUser() {
+    public Gebruiker getActiveGebruiker() {
         return activeGebruiker;
     }
 
@@ -36,22 +36,22 @@ public class Security {
 
         boolean loggedIn = false;
 
-        System.out.println("Enter username: ");
+        System.out.println("Gebruikersnaam: ");
 
         while (!loggedIn) {
-            String username = MyScanner.nextLine();
-            Gebruiker gebruiker = seeder.getGebruiker(username);
+            String gebruikersnaam = MyScanner.nextLine();
+            Gebruiker gebruiker = seeder.getGebruiker(gebruikersnaam);
 
             if (gebruiker != null) {
-                setActiveUser(gebruiker);
+                setActieveGebruiker(gebruiker);
                 return gebruiker;
             }
-            System.out.println("Unknown user. Try again.");
+            System.out.println("Onbekend account. Probeer opnieuw.");
         }
         return null;
     }
 
     public void logout() {
-        setActiveUser(null);
+        setActieveGebruiker(null);
     }
 }
