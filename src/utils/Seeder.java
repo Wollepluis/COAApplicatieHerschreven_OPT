@@ -1,5 +1,6 @@
 package utils;
 
+import appModels.AZC;
 import appModels.Gemeente;
 import appModels.Land;
 import menu.*;
@@ -69,6 +70,7 @@ public class Seeder {
 
         Land_Controller landController = Land_Controller.getInstance();
         Gemeente_Controller gemeenteController = Gemeente_Controller.getInstance();
+        AZC_Controller azcController = AZC_Controller.getInstance();
 
         landController.voegLandToe(new Land("Ghana", false));
         landController.voegLandToe(new Land("Afghanistan", true));
@@ -76,6 +78,12 @@ public class Seeder {
         gemeenteController.voegGemeenteToe(new Gemeente("Amsterdam",918000));
         gemeenteController.voegGemeenteToe(new Gemeente("Rotterdam",663000));
         gemeenteController.voegGemeenteToe(new Gemeente("Den Haag", 562000));
+        Gemeente amsterdam = gemeenteController.getGemeente("Amsterdam");
+        Gemeente rotterdam = gemeenteController.getGemeente("Rotterdam");
+        Gemeente denHaag = gemeenteController.getGemeente("Den Haag");
+
+        azcController.voegAZCToe(amsterdam, new AZC(amsterdam, "1067SL", "Willinklaan", 3, 700));
+        azcController.voegAZCToe(denHaag, new AZC(denHaag, "2517AS", "Laan van Meerdervoort", 108, 600));
 
         voegGebruikerToe(new Beheerder("beheerder"));
         voegGebruikerToe(new COAMedewerker("coa"));
@@ -94,14 +102,14 @@ public class Seeder {
         Menu admin = new Menu("");
         admin.voegMenukeuzeToe(new Menukeuze("Landen beheren", new Land_Beheer()));
         admin.voegMenukeuzeToe(new Menukeuze("Gemeente beheren", new Gemeente_Beheer()));
-       // admin.voegMenukeuzeToe(new Menukeuze("AZCs beheren", new AZC_Beheer()));
+        admin.voegMenukeuzeToe(new Menukeuze("AZCs beheren", new AZC_Beheer()));
         admin.voegMenukeuzeToe(terug);
         menus.put(MenuType.BEHEERDER, admin);
 
         //LAND_BEHEER
         Menu beheerLand = new Menu("Landen beheren");
         beheerLand.voegMenukeuzeToe(new Menukeuze("Alle geregistreerde landen tonen", new Land_ShowAll()));
-        beheerLand.voegMenukeuzeToe(new Menukeuze("Nieuw land toevoegen", new Land_voegToe()));
+        beheerLand.voegMenukeuzeToe(new Menukeuze("Nieuw land toevoegen", new Land_VoegToe()));
         beheerLand.voegMenukeuzeToe(new Menukeuze("Geregistreerd land wijzigen", new Land_Wijzig()));
         beheerLand.voegMenukeuzeToe(terug);
         menus.put(MenuType.LAND_BEHEER, beheerLand);
@@ -116,9 +124,17 @@ public class Seeder {
         //GEMEENTE_BEHEER
         Menu beheerGemeente = new Menu("Gemeentes beheren");
         beheerGemeente.voegMenukeuzeToe(new Menukeuze("Alle geregistreerde gemeentes tonen", new Gemeente_showAll()));
-        beheerGemeente.voegMenukeuzeToe(new Menukeuze("Nieuwe gemeente toevoegen", new Gemeente_voegToe()));
+        beheerGemeente.voegMenukeuzeToe(new Menukeuze("Nieuwe gemeente toevoegen", new Gemeente_VoegToe()));
         beheerGemeente.voegMenukeuzeToe(terug);
         menus.put(MenuType.GEMEENTE_BEHEER, beheerGemeente);
+
+        //AZC_BEHEER
+        Menu beheerAZC = new Menu("AZCs beheren");
+        beheerAZC.voegMenukeuzeToe(new Menukeuze("Nieuw AZC toevoegen", new AZC_VoegToe()));
+        beheerAZC.voegMenukeuzeToe(new Menukeuze("AZC aanpassen", new AZC_Wijzig()));
+        beheerAZC.voegMenukeuzeToe(new Menukeuze("AZC verwijderen", new AZC_Verwijder()));
+        beheerAZC.voegMenukeuzeToe(terug);
+        menus.put(MenuType.AZC_BEHEER, beheerAZC);
     }
 
     private Seeder() {

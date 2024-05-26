@@ -25,7 +25,7 @@ public class Gemeente_showAll implements IAction {
             int teller = 0;
             int aantalVluchtelingen = 0;
 
-            for (AZC a : alleAZCs) {
+            for (AZC a : g.getLocaleAZCS()) {
                 totaalcapaciteit += a.getAantalPlaatsen();
                 aantalVluchtelingen += a.gevestigdeVluchtelingen.size();
                 teller++;

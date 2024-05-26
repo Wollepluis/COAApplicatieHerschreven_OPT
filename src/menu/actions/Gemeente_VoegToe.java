@@ -4,7 +4,7 @@ import appModels.Gemeente;
 import utils.Gemeente_Controller;
 import utils.MyScanner;
 
-public class Gemeente_voegToe implements IAction {
+public class Gemeente_VoegToe implements IAction {
 
     @Override
     public void execute() {
@@ -14,14 +14,16 @@ public class Gemeente_voegToe implements IAction {
         String naam;
         int aantalInwoners;
 
-        System.out.print("Voer naam van land in: ");
+        System.out.print("Voer naam van gemeente in: ");
         naam = MyScanner.nextLine();
 
-        if (!gemeenteController.GemeenteBestaat(naam)) {
+        Gemeente gemeente = gemeenteController.getGemeente(naam);
+
+        if (gemeente == null) {
 
             System.out.print("Geef het aantal inwoners op: ");
             aantalInwoners = MyScanner.nextInt();
-            System.out.println(naam + "toegevoegd!");
+            System.out.println(naam + " toegevoegd!");
             gemeenteController.voegGemeenteToe(new Gemeente(naam, aantalInwoners));
         }
         else {

@@ -1,5 +1,6 @@
 package utils;
 
+import appModels.AZC;
 import appModels.Gemeente;
 
 import java.util.ArrayList;
@@ -25,19 +26,26 @@ public class Gemeente_Controller {
         this.alleGemeentes = new ArrayList<>();
     }
 
-    public boolean GemeenteBestaat(String name) {
+    public Gemeente getGemeente(String name) {
 
-        for (Gemeente g : alleGemeentes) {
+        for (Gemeente g : this.alleGemeentes) {
 
             if (name.equalsIgnoreCase(g.getNaam())) {
-                System.out.println("Deze gemeente is al geregistreerd.");
-                return true;
+                return g;
             }
         }
-        return false;
+        return null;
     }
 
     public void voegGemeenteToe(Gemeente gemeente) {
-        alleGemeentes.add(gemeente);
+        this.alleGemeentes.add(gemeente);
+    }
+
+    public void voegLokaalAZCToe(Gemeente gemeente, AZC azc) {
+        gemeente.getLocaleAZCS().add(azc);
+    }
+
+    public void verwijderLokaalAZC(Gemeente gemeente, AZC azc) {
+        gemeente.getLocaleAZCS().remove(azc);
     }
 }

@@ -1,5 +1,7 @@
 package appModels;
 
+import utils.Gemeente_Controller;
+
 import java.util.ArrayList;
 
 public class Gemeente {
@@ -25,24 +27,12 @@ public class Gemeente {
         return this.aantalBewoners;
     }
 
+    public ArrayList<AZC> getLocaleAZCS() {
+        return this.localeAZCS;
+    }
+
     public Gemeente(String naam, int aantalBewoners) {
         this.setNaam(naam);
         this.setAantalBewoners(aantalBewoners);
-    }
-
-    public boolean bestaatAZC(String straatnaam) {
-
-        for (AZC a : this.localeAZCS) {
-
-            if (straatnaam.equalsIgnoreCase(a.getStraatnaam())) {
-                System.out.println("Dis AZC bestaat al in deze gemeente.");
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void voegAZCToe(AZC azc) {
-        this.localeAZCS.add(azc);
     }
 }

@@ -1,12 +1,14 @@
 package utils;
 
 import appModels.AZC;
+import appModels.Gemeente;
 
 import java.util.ArrayList;
 
 public class AZC_Controller {
 
     private static AZC_Controller instance = null;
+    Gemeente_Controller gemeenteController = Gemeente_Controller.getInstance();
 
     private final ArrayList<AZC> alleAZCs;
 
@@ -26,19 +28,28 @@ public class AZC_Controller {
         this.alleAZCs = new ArrayList<>();
     }
 
-    public boolean AZCBestaat(String straatnaam) {
+    public AZC bestaatAZC(Gemeente gemeente, String postcode, String straatnaam, int huisnummer) {
 
-        for (AZC a : alleAZCs) {
+        for (AZC a : gemeente.getLocaleAZCS()) {
 
-            if (straatnaam.equalsIgnoreCase(a.getStraatnaam())) {
-                System.out.println("Dit AZC is al geregistreerd.");
-                return true;
+            if (postcode.equalsIgnoreCase(a.getPostcode()) && straatnaam.equalsIgnoreCase(a.getStraatnaam()) && huisnummer == a.getHuisnummer()) {
+                return a;
             }
         }
-        return false;
+        return null;
     }
 
-    public void voegAZCToe(AZC azc) {
-        alleAZCs.add(azc);
+    public boolean checkIfEmpty(AZC azc) {
+        return azc.gevestigdeVluchtelingen.isEmpty();
+    }
+
+    public void voegAZCToe(Gemeente gemeente, AZC azc) {
+        this.alleAZCs.add(azc);
+        gemeenteController.voegLokaalAZCToe(gemeente, azc);
+    }
+
+    public void verwijderAZC(Gemeente gemeente, AZC azc) {
+        this.alleAZCs.remove(azc);
+        gemeenteController.verwijderLokaalAZC(gemeente, azc);
     }
 }

@@ -8,6 +8,7 @@ public enum MenuType {
     LAND_BEHEER,
     LAND_WIJZIG,
     GEMEENTE_BEHEER,
-    GEMEENTE_WIJZIG
+    GEMEENTE_WIJZIG,
+    AZC_BEHEER
 
 }
