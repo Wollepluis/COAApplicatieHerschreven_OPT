@@ -2,7 +2,6 @@ package menu.actions;
 
 import appModels.AZC;
 import appModels.Gemeente;
-import utils.AZC_Controller;
 import utils.Gemeente_Controller;
 
 import java.util.ArrayList;
@@ -14,9 +13,7 @@ public class Gemeente_showAll implements IAction {
         System.out.println("\n==== Gemeente Rapportage ====\n");
 
         Gemeente_Controller gemeenteController = Gemeente_Controller.getInstance();
-        AZC_Controller azcController = AZC_Controller.getInstance();
         ArrayList<Gemeente> alleGemeentes = gemeenteController.getAlleGemeentes();
-        ArrayList<AZC> alleAZCs = azcController.getAlleAZCs();
 
         for (Gemeente g : alleGemeentes) {
             System.out.printf("%s, %d inwoners%n", g.getNaam(), g.getAantalBewoners());

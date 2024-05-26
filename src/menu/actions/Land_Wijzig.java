@@ -1,5 +1,6 @@
 package menu.actions;
 
+import appModels.Land;
 import utils.Land_Controller;
 import utils.MenuType;
 import utils.MyScanner;
@@ -19,7 +20,9 @@ public class Land_Wijzig implements IAction {
         System.out.println("Welk land wil je wijzigen?");
         String naam = MyScanner.nextLine();
 
-        if (!landController.landBestaat(naam)) {
+        Land land = landController.bestaatLand(naam);
+
+        if (land == null) {
             System.out.println("Dit land is niet geregistreerd in dit systeem.");
             return;
         }

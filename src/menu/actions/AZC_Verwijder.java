@@ -43,9 +43,11 @@ public class AZC_Verwijder implements IAction {
                 if (azc != null) {
 
                     if (azcController.checkIfEmpty(azc)) {
+
                         azcController.verwijderAZC(gemeente, azc);
                         System.out.println("AZC verwijderd.");
                     } else {
+
                         System.out.println("In dit AZC zijn nog vluchtelingen gehuisvest.");
                         System.out.println("Plaats deze vluchtelingen eerst over naar een ander AZC om te verwijderen.");
                     }

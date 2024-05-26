@@ -33,7 +33,7 @@ public class Land_Controller {
 
     public void setActiefLand(String actiefLand) {
 
-        for (Land l : alleLanden) {
+        for (Land l : this.alleLanden) {
 
             if (actiefLand.equalsIgnoreCase(l.getNaam())) {
                 this.actiefLand = l;
@@ -45,18 +45,18 @@ public class Land_Controller {
         this.alleLanden = new ArrayList<>();
     }
 
-    public boolean landBestaat(String naam) {
+    public Land bestaatLand(String landNaam) {
 
-        for (Land l : alleLanden) {
+        for (Land l : this.alleLanden) {
 
-            if (naam.equalsIgnoreCase(l.getNaam())) {
-                return true;
+            if (landNaam.equalsIgnoreCase(l.getNaam())) {
+                return l;
             }
         }
-        return false;
+        return null;
     }
 
     public void voegLandToe(Land land) {
-        alleLanden.add(land);
+        this.alleLanden.add(land);
     }
 }

@@ -20,14 +20,8 @@ public class Land_Wijzig_Naam implements IAction {
             System.out.println("Wijziging geannuleerd.");
         }
         else {
-            ArrayList<Land> alleLanden = landController.getAlleLanden();
-
-            for (Land l : alleLanden) {
-
-                if (landController.getActiefLand().equals(l.getNaam())) {
-                    l.setNaam(nieuweNaam);
-                }
-            }
+            landController.getActiefLand().setNaam(nieuweNaam);
+            System.out.println("Naam gewijzigd.");
         }
     }
 }

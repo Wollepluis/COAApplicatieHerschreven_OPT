@@ -18,7 +18,9 @@ public class Land_VoegToe implements IAction{
         System.out.print("Voer naam van land in: ");
         naam = MyScanner.nextLine();
 
-        if (!landController.landBestaat(naam)) {
+        Land land = landController.bestaatLand(naam);
+
+        if (land == null) {
 
             if (ClosedQuestion.question("Is dit land 'veilig'?")){
                 isVeilig = true;

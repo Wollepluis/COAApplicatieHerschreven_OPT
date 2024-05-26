@@ -15,6 +15,8 @@ public class Vluchteling extends Gebruiker {
     private String uitspraak;
     private Woning woning;
 
+    private boolean geregistreerd;
+
     public void setNaam(String naam) {
         this.naam = naam;
     }
@@ -39,6 +41,10 @@ public class Vluchteling extends Gebruiker {
         this.woning = woning;
     }
 
+    public void setGeregistreerd(boolean geregistreerd) {
+        this.geregistreerd = geregistreerd;
+    }
+
     public String getNaam() {
         return this.naam;
     }
@@ -61,6 +67,10 @@ public class Vluchteling extends Gebruiker {
 
     public Woning getWoning() {
         return this.woning;
+    }
+
+    public boolean getGeregistreerd() {
+        return this.geregistreerd;
     }
 
     public Vluchteling(String gebruikersnaam) {
