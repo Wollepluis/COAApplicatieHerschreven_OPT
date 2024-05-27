@@ -5,7 +5,7 @@ import utils.ClosedQuestion;
 import utils.Land_Controller;
 import utils.MyScanner;
 
-public class Land_VoegToe implements IAction{
+public class B_Land_VoegToe implements IAction{
 
     @Override
     public void execute() {

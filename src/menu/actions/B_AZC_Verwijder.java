@@ -6,9 +6,7 @@ import utils.AZC_Controller;
 import utils.Gemeente_Controller;
 import utils.MyScanner;
 
-import java.util.ArrayList;
-
-public class AZC_Verwijder implements IAction {
+public class B_AZC_Verwijder implements IAction {
 
     @Override
     public void execute() {

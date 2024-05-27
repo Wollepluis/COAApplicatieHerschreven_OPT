@@ -3,7 +3,7 @@ package menu.actions;
 import utils.MenuType;
 import utils.Seeder;
 
-public class Gemeente_Beheer implements IAction {
+public class B_Gemeente_Beheer implements IAction {
 
     @Override
     public void execute() {

@@ -6,7 +6,7 @@ import utils.MenuType;
 import utils.MyScanner;
 import utils.Seeder;
 
-public class Land_Wijzig implements IAction {
+public class B_Land_Wijzig implements IAction {
 
     public String capitalize(String naam) {
         return naam.substring(0,1).toUpperCase() + naam.substring(1).toLowerCase();

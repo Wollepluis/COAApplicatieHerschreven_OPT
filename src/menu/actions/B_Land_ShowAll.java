@@ -5,7 +5,7 @@ import utils.Land_Controller;
 
 import java.util.ArrayList;
 
-public class Land_ShowAll implements IAction {
+public class B_Land_ShowAll implements IAction {
 
     public String print(boolean isVeilig) {
         if (isVeilig) {

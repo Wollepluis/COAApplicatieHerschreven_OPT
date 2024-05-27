@@ -3,7 +3,7 @@ package menu.actions;
 import utils.ClosedQuestion;
 import utils.Land_Controller;
 
-public class Land_Wijzig_Veiligheid implements IAction {
+public class B_Land_Wijzig_Veiligheid implements IAction {
 
     public String printVeiligheid(boolean veiligheid) {
 

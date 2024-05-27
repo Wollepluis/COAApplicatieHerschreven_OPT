@@ -1,6 +1,6 @@
 package menu.actions;
 
-public class Gemeente_Wijzig implements IAction {
+public class B_Gemeente_Wijzig implements IAction {
 
     @Override
     public void execute(){}

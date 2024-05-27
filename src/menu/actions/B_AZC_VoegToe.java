@@ -6,7 +6,7 @@ import utils.AZC_Controller;
 import utils.Gemeente_Controller;
 import utils.MyScanner;
 
-public class AZC_VoegToe implements IAction {
+public class B_AZC_VoegToe implements IAction {
 
     @Override
     public void execute() {
