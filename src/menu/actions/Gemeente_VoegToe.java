@@ -23,8 +23,8 @@ public class Gemeente_VoegToe implements IAction {
 
             System.out.print("Geef het aantal inwoners op: ");
             aantalInwoners = MyScanner.nextInt();
-            System.out.println(naam + " toegevoegd!");
             gemeenteController.voegGemeenteToe(new Gemeente(naam, aantalInwoners));
+            System.out.println(naam + " toegevoegd!");
         }
         else {
             System.out.println("Deze gemeente is al geregistreerd.");

@@ -3,8 +3,6 @@ package utils;
 import appModels.AZC;
 import appModels.Gemeente;
 
-import java.util.ArrayList;
-
 public class AZC_Controller {
 
     private static AZC_Controller instance = null;
@@ -18,7 +16,7 @@ public class AZC_Controller {
         return instance;
     }
 
-    public AZC bestaatAZC(Gemeente gemeente, String postcode, String straatnaam, int huisnummer) {
+    public AZC getAZC(Gemeente gemeente, String postcode, String straatnaam, int huisnummer) {
 
         for (AZC a : gemeente.getLocaleAZCS()) {
 

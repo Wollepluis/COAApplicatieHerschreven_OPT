@@ -6,8 +6,6 @@ import utils.AZC_Controller;
 import utils.Gemeente_Controller;
 import utils.MyScanner;
 
-import java.util.ArrayList;
-
 public class AZC_Verwijder implements IAction {
 
     @Override
@@ -38,7 +36,7 @@ public class AZC_Verwijder implements IAction {
                 System.out.print("huisnummer: ");
                 huisnummer = MyScanner.nextInt();
 
-                AZC azc = azcController.bestaatAZC(gemeente, postcode, straatnaam, huisnummer);
+                AZC azc = azcController.getAZC(gemeente, postcode, straatnaam, huisnummer);
 
                 if (azc != null) {
 

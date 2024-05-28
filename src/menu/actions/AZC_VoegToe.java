@@ -33,11 +33,17 @@ public class AZC_VoegToe implements IAction {
             straatnaam = MyScanner.nextLine();
             System.out.print("huisnummer: ");
             huisnummer = MyScanner.nextInt();
+            System.out.println("Aantal plaatsen: ");
+            aantalPlaatsen = MyScanner.nextInt();
 
-            AZC azc = azcController.bestaatAZC(gemeente, postcode, straatnaam, huisnummer);
+            AZC azc = azcController.getAZC(gemeente, postcode, straatnaam, huisnummer);
 
             if (azc == null) {
-                gemeenteController.voegLokaalAZCToe(gemeente, azc);
+                gemeenteController.voegLokaalAZCToe(gemeente, new AZC(gemeente, postcode, straatnaam, huisnummer, aantalPlaatsen));
+                System.out.println("AZC toegevoegd.");
+            }
+            else {
+                System.out.println("Dit AZC bestaat al.");
             }
         }
         else {
