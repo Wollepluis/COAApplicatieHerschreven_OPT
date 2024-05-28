@@ -20,7 +20,7 @@ public class B_Land_Wijzig implements IAction {
         System.out.println("Welk land wil je wijzigen?");
         String naam = MyScanner.nextLine();
 
-        Land land = landController.bestaatLand(naam);
+        Land land = landController.getLand(naam);
 
         if (land == null) {
             System.out.println("Dit land is niet geregistreerd in dit systeem.");

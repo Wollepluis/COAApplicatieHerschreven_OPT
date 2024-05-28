@@ -4,20 +4,21 @@ import appModels.Land;
 import appModels.Woning;
 import menu.Menu;
 import utils.MenuType;
+import utils.RechterUitspraak;
 import utils.Seeder;
 
 public class Vluchteling extends Gebruiker {
 
     private String naam;
     private Land landVanHerkomst;
-    private boolean geregistreerd;
+    private boolean isGeregistreerd;
     private boolean heeftVergunning;
 
     private boolean heeftPaspoort;
     private boolean rechterToegewezen;
-    private int uitspraak;
+    private RechterUitspraak uitspraak;
 
-    private boolean plaatsingWoning;
+    private boolean plaatsingInWoning;
     private Woning woning;
 
     public void setNaam(String naam) {
@@ -36,7 +37,7 @@ public class Vluchteling extends Gebruiker {
         this.heeftVergunning = heeftVergunning;
     }
 
-    public void setUitspraak(int uitspraak) {
+    public void setUitspraak(RechterUitspraak uitspraak) {
         this.uitspraak = uitspraak;
     }
 
@@ -45,15 +46,15 @@ public class Vluchteling extends Gebruiker {
     }
 
     public void setGeregistreerd(boolean geregistreerd) {
-        this.geregistreerd = geregistreerd;
+        this.isGeregistreerd = geregistreerd;
     }
 
     public void setRechterToegewezen(boolean toegewezen) {
         this.rechterToegewezen = toegewezen;
     }
 
-    public void setPlaatsingWoning(boolean plaatsing) {
-        this.plaatsingWoning = plaatsing;
+    public void setPlaatsingInWoning(boolean plaatsing) {
+        this.plaatsingInWoning = plaatsing;
     }
 
     public String getNaam() {
@@ -75,9 +76,9 @@ public class Vluchteling extends Gebruiker {
     public String getUitspraak() {
 
         return switch (this.uitspraak) {
-            case 0 -> "Geaccepteerd";
-            case 1 -> "Afgewezen";
-            default -> "Nee";
+            case RechterUitspraak.GEACCEPTEERD -> "Geaccepteerd";
+            case RechterUitspraak.AFGEWEZEN -> "Afgewezen";
+            case RechterUitspraak.GEEN_BESLUIT -> "Geen besluit";
         };
     }
 
@@ -85,20 +86,20 @@ public class Vluchteling extends Gebruiker {
         return this.woning;
     }
 
-    public boolean getGeregistreerd() {
-        return this.geregistreerd;
+    public boolean isGeregistreerd() {
+        return this.isGeregistreerd;
     }
 
     public String getRechterToegewezen() {
         return jaOfNee(this.rechterToegewezen);
     }
 
-    public String getPlaatsingWoning() {
+    public String getPlaatsingInWoning() {
 
-        if (this.woning == null && this.plaatsingWoning) {
+        if (this.woning == null && this.plaatsingInWoning) {
             return "Gestart";
         }
-        else if (this.woning != null && this.plaatsingWoning) {
+        else if (this.woning != null && this.plaatsingInWoning) {
             return "Afgerond";
         }
         else {
@@ -114,7 +115,7 @@ public class Vluchteling extends Gebruiker {
         setHeeftVergunning(false);
         setHeeftPaspoort(false);
         setRechterToegewezen(false);
-        setPlaatsingWoning(false);
+        setPlaatsingInWoning(false);
     }
 
     public String jaOfNee(boolean var) {

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Gemeente_Controller {
 
     private static Gemeente_Controller instance = null;
-    private final ArrayList<Gemeente> alleGemeentes;
+    private final ArrayList<Gemeente> alleGemeentes = new ArrayList<>();
 
     public static Gemeente_Controller getInstance() {
 
@@ -20,10 +20,6 @@ public class Gemeente_Controller {
 
     public ArrayList<Gemeente> getAlleGemeentes() {
         return this.alleGemeentes;
-    }
-
-    public Gemeente_Controller() {
-        this.alleGemeentes = new ArrayList<>();
     }
 
     public Gemeente getGemeente(String name) {

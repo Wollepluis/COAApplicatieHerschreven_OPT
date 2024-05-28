@@ -18,7 +18,7 @@ public class B_Land_VoegToe implements IAction{
         System.out.print("Voer naam van land in: ");
         naam = MyScanner.nextLine();
 
-        Land land = landController.bestaatLand(naam);
+        Land land = landController.getLand(naam);
 
         if (land == null) {
 

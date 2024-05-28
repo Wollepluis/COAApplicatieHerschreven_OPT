@@ -9,7 +9,7 @@ public class Land_Controller {
     private static Land_Controller instance = null;
 
     private Land actiefLand;
-    private final ArrayList<Land> alleLanden;
+    private final ArrayList<Land> alleLanden = new ArrayList<>();;
 
     public static Land_Controller getInstance() {
 
@@ -27,10 +27,6 @@ public class Land_Controller {
         actiefLand = null;
     }
 
-    public ArrayList<Land> getAlleLanden() {
-        return alleLanden;
-    }
-
     public void setActiefLand(String actiefLand) {
 
         for (Land l : this.alleLanden) {
@@ -41,11 +37,11 @@ public class Land_Controller {
         }
     }
 
-    private Land_Controller() {
-        this.alleLanden = new ArrayList<>();
+    public ArrayList<Land> getAlleLanden() {
+        return alleLanden;
     }
 
-    public Land bestaatLand(String landNaam) {
+    public Land getLand(String landNaam) {
 
         for (Land l : this.alleLanden) {
 

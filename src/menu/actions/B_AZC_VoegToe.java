@@ -27,13 +27,15 @@ public class B_AZC_VoegToe implements IAction {
 
         if (gemeente != null) {
             System.out.println("Geef de volgende gegevens van het AZC op.");
+
+            // Adres class --> code smell onthouden
             System.out.print("Postcode: ");
             postcode = MyScanner.nextLine();
             System.out.print("Straatnaam: ");
             straatnaam = MyScanner.nextLine();
             System.out.print("huisnummer: ");
             huisnummer = MyScanner.nextInt();
-            System.out.println("Aantal plaatsen: ");
+            System.out.print("Aantal plaatsen: ");
             aantalPlaatsen = MyScanner.nextInt();
 
             AZC azc = azcController.getAZC(gemeente, postcode, straatnaam, huisnummer);

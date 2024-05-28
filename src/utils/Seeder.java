@@ -82,8 +82,8 @@ public class Seeder {
         Gemeente rotterdam = gemeenteController.getGemeente("Rotterdam");
         Gemeente denHaag = gemeenteController.getGemeente("Den Haag");
 
-        azcController.voegAZCToe(amsterdam, new AZC(amsterdam, "1067SL", "Willinklaan", 3, 700));
-        azcController.voegAZCToe(denHaag, new AZC(denHaag, "2517AS", "Laan van Meerdervoort", 108, 600));
+        gemeenteController.voegLokaalAZCToe(amsterdam, new AZC(amsterdam, "1067SL", "Willinklaan", 3, 700));
+        gemeenteController.voegLokaalAZCToe(denHaag, new AZC(denHaag, "2517AS", "Laan van Meerdervoort", 108, 600));
 
         voegGebruikerToe(new Beheerder("beheerder"));
         voegGebruikerToe(new COAMedewerker("coa"));

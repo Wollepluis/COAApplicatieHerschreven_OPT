@@ -27,7 +27,7 @@ public class Vluchteling_Controller {
     }
 
     public boolean checkRegistratie(Vluchteling vluchteling) {
-        return vluchteling.getGeregistreerd();
+        return vluchteling.isGeregistreerd();
     }
 
     public void registreerVluchteling(Vluchteling vluchteling) {

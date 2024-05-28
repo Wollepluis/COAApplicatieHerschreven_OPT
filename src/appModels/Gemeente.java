@@ -1,13 +1,11 @@
 package appModels;
 
-import utils.Gemeente_Controller;
-
 import java.util.ArrayList;
 
 public class Gemeente {
 
     private String naam;
-    private int aantalBewoners;
+    private int aantalInwoners;
 
     private final ArrayList<AZC> localeAZCS = new ArrayList<>();
 
@@ -15,24 +13,24 @@ public class Gemeente {
         this.naam = naam;
     }
 
-    public void setAantalBewoners(int aantalBewoners) {
-        this.aantalBewoners = aantalBewoners;
+    public void setAantalInwoners(int aantalInwoners) {
+        this.aantalInwoners = aantalInwoners;
     }
 
     public String getNaam() {
         return this.naam;
     }
 
-    public int getAantalBewoners() {
-        return this.aantalBewoners;
+    public int getAantalInwoners() {
+        return this.aantalInwoners;
     }
 
     public ArrayList<AZC> getLocaleAZCS() {
         return this.localeAZCS;
     }
 
-    public Gemeente(String naam, int aantalBewoners) {
+    public Gemeente(String naam, int aantalInwoners) {
         this.setNaam(naam);
-        this.setAantalBewoners(aantalBewoners);
+        this.setAantalInwoners(aantalInwoners);
     }
 }

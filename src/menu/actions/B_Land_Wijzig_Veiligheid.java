@@ -20,7 +20,7 @@ public class B_Land_Wijzig_Veiligheid implements IAction {
         Land_Controller landController = Land_Controller.getInstance();
 
         String landNaam = landController.getActiefLand().getNaam();
-        boolean veiligheid = landController.getActiefLand().getVeilig();
+        boolean veiligheid = landController.getActiefLand().isVeilig();
 
         if (ClosedQuestion.question("Wil je " + landNaam + "s veiligheid veranderen van '" + printVeiligheid(veiligheid) + "' naar '" + printVeiligheid(!veiligheid) + "'?")){
             landController.getActiefLand().setVeilig(!veiligheid);

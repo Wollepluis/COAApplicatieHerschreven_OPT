@@ -17,7 +17,7 @@ public class Land {
         return this.naam;
     }
 
-    public boolean getVeilig() {
+    public boolean isVeilig() {
         return this.isVeilig;
     }
 
