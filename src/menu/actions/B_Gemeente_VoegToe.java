@@ -4,7 +4,7 @@ import appModels.Gemeente;
 import utils.Gemeente_Controller;
 import utils.MyScanner;
 
-public class Gemeente_VoegToe implements IAction {
+public class B_Gemeente_VoegToe implements IAction {
 
     @Override
     public void execute() {

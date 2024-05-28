@@ -10,12 +10,15 @@ public class Vluchteling extends Gebruiker {
 
     private String naam;
     private Land landVanHerkomst;
-    private boolean heeftPaspoort;
-    private boolean heeftVergunning;
-    private String uitspraak;
-    private Woning woning;
-
     private boolean geregistreerd;
+    private boolean heeftVergunning;
+
+    private boolean heeftPaspoort;
+    private boolean rechterToegewezen;
+    private int uitspraak;
+
+    private boolean plaatsingWoning;
+    private Woning woning;
 
     public void setNaam(String naam) {
         this.naam = naam;
@@ -33,7 +36,7 @@ public class Vluchteling extends Gebruiker {
         this.heeftVergunning = heeftVergunning;
     }
 
-    public void setUitspraak(String uitspraak) {
+    public void setUitspraak(int uitspraak) {
         this.uitspraak = uitspraak;
     }
 
@@ -45,6 +48,14 @@ public class Vluchteling extends Gebruiker {
         this.geregistreerd = geregistreerd;
     }
 
+    public void setRechterToegewezen(boolean toegewezen) {
+        this.rechterToegewezen = toegewezen;
+    }
+
+    public void setPlaatsingWoning(boolean plaatsing) {
+        this.plaatsingWoning = plaatsing;
+    }
+
     public String getNaam() {
         return this.naam;
     }
@@ -53,16 +64,21 @@ public class Vluchteling extends Gebruiker {
         return this.landVanHerkomst;
     }
 
-    public boolean getHeeftPaspoort() {
-        return this.heeftPaspoort;
+    public String getHeeftPaspoort() {
+        return jaOfNee(this.heeftPaspoort);
     }
 
-    public boolean getHeeftVergunning() {
-        return this.heeftVergunning;
+    public String getHeeftVergunning() {
+        return jaOfNee(this.heeftVergunning);
     }
 
     public String getUitspraak() {
-        return this.uitspraak;
+
+        return switch (this.uitspraak) {
+            case 0 -> "Geaccepteerd";
+            case 1 -> "Afgewezen";
+            default -> "Nee";
+        };
     }
 
     public Woning getWoning() {
@@ -73,8 +89,41 @@ public class Vluchteling extends Gebruiker {
         return this.geregistreerd;
     }
 
-    public Vluchteling(String gebruikersnaam) {
-        super(gebruikersnaam);
+    public String getRechterToegewezen() {
+        return jaOfNee(this.rechterToegewezen);
+    }
+
+    public String getPlaatsingWoning() {
+
+        if (this.woning == null && this.plaatsingWoning) {
+            return "Gestart";
+        }
+        else if (this.woning != null && this.plaatsingWoning) {
+            return "Afgerond";
+        }
+        else {
+            return "Nee";
+        }
+    }
+
+    public Vluchteling(String naam, Land land) {
+        super(naam);
+        setNaam(naam);
+        setLandVanHerkomst(land);
+        setGeregistreerd(false);
+        setHeeftVergunning(false);
+        setHeeftPaspoort(false);
+        setRechterToegewezen(false);
+        setPlaatsingWoning(false);
+    }
+
+    public String jaOfNee(boolean var) {
+        if (var) {
+            return "Ja";
+        }
+        else {
+            return "Nee";
+        }
     }
 
     @Override

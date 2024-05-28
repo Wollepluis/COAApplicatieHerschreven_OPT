@@ -6,7 +6,7 @@ import utils.Gemeente_Controller;
 
 import java.util.ArrayList;
 
-public class Gemeente_showAll implements IAction {
+public class B_Gemeente_showAll implements IAction {
 
     @Override
     public void execute(){

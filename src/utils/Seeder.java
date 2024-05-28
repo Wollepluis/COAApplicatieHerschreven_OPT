@@ -100,39 +100,39 @@ public class Seeder {
 
         //BEHEERDER
         Menu admin = new Menu("");
-        admin.voegMenukeuzeToe(new Menukeuze("Landen beheren", new Land_Beheer()));
-        admin.voegMenukeuzeToe(new Menukeuze("Gemeente beheren", new Gemeente_Beheer()));
-        admin.voegMenukeuzeToe(new Menukeuze("AZCs beheren", new AZC_Beheer()));
+        admin.voegMenukeuzeToe(new Menukeuze("Landen beheren", new B_Land_Beheer()));
+        admin.voegMenukeuzeToe(new Menukeuze("Gemeente beheren", new B_Gemeente_Beheer()));
+        admin.voegMenukeuzeToe(new Menukeuze("AZCs beheren", new B_AZC_Beheer()));
         admin.voegMenukeuzeToe(terug);
         menus.put(MenuType.BEHEERDER, admin);
 
         //LAND_BEHEER
         Menu beheerLand = new Menu("Landen beheren");
-        beheerLand.voegMenukeuzeToe(new Menukeuze("Alle geregistreerde landen tonen", new Land_ShowAll()));
-        beheerLand.voegMenukeuzeToe(new Menukeuze("Nieuw land toevoegen", new Land_VoegToe()));
-        beheerLand.voegMenukeuzeToe(new Menukeuze("Geregistreerd land wijzigen", new Land_Wijzig()));
+        beheerLand.voegMenukeuzeToe(new Menukeuze("Alle geregistreerde landen tonen", new B_Land_ShowAll()));
+        beheerLand.voegMenukeuzeToe(new Menukeuze("Nieuw land toevoegen", new B_Land_VoegToe()));
+        beheerLand.voegMenukeuzeToe(new Menukeuze("Geregistreerd land wijzigen", new B_Land_Wijzig()));
         beheerLand.voegMenukeuzeToe(terug);
         menus.put(MenuType.LAND_BEHEER, beheerLand);
 
         //LAND_WIJZIG
         Menu wijzigLand = new Menu("");
-        wijzigLand.voegMenukeuzeToe(new Menukeuze("Naam Wijzigen", new Land_Wijzig_Naam()));
-        wijzigLand.voegMenukeuzeToe(new Menukeuze("Veiligheid aanpassen", new Land_Wijzig_Veiligheid()));
+        wijzigLand.voegMenukeuzeToe(new Menukeuze("Naam Wijzigen", new B_Land_Wijzig_Naam()));
+        wijzigLand.voegMenukeuzeToe(new Menukeuze("Veiligheid aanpassen", new B_Land_Wijzig_Veiligheid()));
         wijzigLand.voegMenukeuzeToe(terug);
         menus.put(MenuType.LAND_WIJZIG, wijzigLand);
 
         //GEMEENTE_BEHEER
         Menu beheerGemeente = new Menu("Gemeentes beheren");
-        beheerGemeente.voegMenukeuzeToe(new Menukeuze("Alle geregistreerde gemeentes tonen", new Gemeente_showAll()));
-        beheerGemeente.voegMenukeuzeToe(new Menukeuze("Nieuwe gemeente toevoegen", new Gemeente_VoegToe()));
+        beheerGemeente.voegMenukeuzeToe(new Menukeuze("Alle geregistreerde gemeentes tonen", new B_Gemeente_showAll()));
+        beheerGemeente.voegMenukeuzeToe(new Menukeuze("Nieuwe gemeente toevoegen", new B_Gemeente_VoegToe()));
         beheerGemeente.voegMenukeuzeToe(terug);
         menus.put(MenuType.GEMEENTE_BEHEER, beheerGemeente);
 
         //AZC_BEHEER
         Menu beheerAZC = new Menu("AZCs beheren");
-        beheerAZC.voegMenukeuzeToe(new Menukeuze("Nieuw AZC toevoegen", new AZC_VoegToe()));
-        beheerAZC.voegMenukeuzeToe(new Menukeuze("AZC aanpassen", new AZC_Wijzig()));
-        beheerAZC.voegMenukeuzeToe(new Menukeuze("AZC verwijderen", new AZC_Verwijder()));
+        beheerAZC.voegMenukeuzeToe(new Menukeuze("Nieuw AZC toevoegen", new B_AZC_VoegToe()));
+        beheerAZC.voegMenukeuzeToe(new Menukeuze("AZC aanpassen", new B_AZC_Wijzig()));
+        beheerAZC.voegMenukeuzeToe(new Menukeuze("AZC verwijderen", new B_AZC_Verwijder()));
         beheerAZC.voegMenukeuzeToe(terug);
         menus.put(MenuType.AZC_BEHEER, beheerAZC);
     }

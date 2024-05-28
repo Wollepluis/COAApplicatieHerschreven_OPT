@@ -1,12 +1,9 @@
 package menu.actions;
 
-import appModels.Land;
 import utils.Land_Controller;
 import utils.MyScanner;
 
-import java.util.ArrayList;
-
-public class Land_Wijzig_Naam implements IAction {
+public class B_Land_Wijzig_Naam implements IAction {
 
     @Override
     public void execute() {
