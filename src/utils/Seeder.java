@@ -1,6 +1,7 @@
 package utils;
 
 import appModels.AZC;
+import appModels.Adres;
 import appModels.Gemeente;
 import appModels.Land;
 import menu.*;
@@ -82,13 +83,14 @@ public class Seeder {
         Gemeente rotterdam = gemeenteController.getGemeente("Rotterdam");
         Gemeente denHaag = gemeenteController.getGemeente("Den Haag");
 
-        gemeenteController.voegLokaalAZCToe(amsterdam, new AZC(amsterdam, "1067SL", "Willinklaan", 3, 700));
-        gemeenteController.voegLokaalAZCToe(denHaag, new AZC(denHaag, "2517AS", "Laan van Meerdervoort", 108, 600));
+        gemeenteController.voegLokaalAZCToe(amsterdam, new AZC(amsterdam, new Adres("1067SL", "Willinklaan", 3), 700));
+        gemeenteController.voegLokaalAZCToe(denHaag, new AZC(denHaag, new Adres("2517AS", "Laan van Meerdervoort", 108), 600));
 
         voegGebruikerToe(new Beheerder("beheerder"));
         voegGebruikerToe(new COAMedewerker("coa"));
 
         Menukeuze login = new Menukeuze("Login", new Login());
+        Menukeuze logout = new Menukeuze(9, "Logout", true, new Logout());
         Menukeuze terug = new Menukeuze(9, "Terug", true, new Return());
         Menukeuze exit = new Menukeuze(9,"Exit", true, new Exit());
 
@@ -103,7 +105,7 @@ public class Seeder {
         admin.voegMenukeuzeToe(new Menukeuze("Landen beheren", new B_Land_Beheer()));
         admin.voegMenukeuzeToe(new Menukeuze("Gemeente beheren", new B_Gemeente_Beheer()));
         admin.voegMenukeuzeToe(new Menukeuze("AZCs beheren", new B_AZC_Beheer()));
-        admin.voegMenukeuzeToe(terug);
+        admin.voegMenukeuzeToe(logout);
         menus.put(MenuType.BEHEERDER, admin);
 
         //LAND_BEHEER
@@ -135,6 +137,11 @@ public class Seeder {
         beheerAZC.voegMenukeuzeToe(new Menukeuze("AZC verwijderen", new B_AZC_Verwijder()));
         beheerAZC.voegMenukeuzeToe(terug);
         menus.put(MenuType.AZC_BEHEER, beheerAZC);
+
+        Menu coaMedewerker = new Menu("");
+        coaMedewerker.voegMenukeuzeToe(new Menukeuze("Vluchteling Toevoegen", new C_Vluchteling_voegToe()));
+        coaMedewerker.voegMenukeuzeToe(logout);
+        menus.put(MenuType.COA_MEDEWERKER, coaMedewerker);
     }
 
     private Seeder() {

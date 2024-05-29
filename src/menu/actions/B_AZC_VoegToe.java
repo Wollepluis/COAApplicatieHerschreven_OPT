@@ -1,8 +1,10 @@
 package menu.actions;
 
 import appModels.AZC;
+import appModels.Adres;
 import appModels.Gemeente;
 import utils.AZC_Controller;
+import utils.Adres_Controller;
 import utils.Gemeente_Controller;
 import utils.MyScanner;
 
@@ -13,11 +15,9 @@ public class B_AZC_VoegToe implements IAction {
 
         AZC_Controller azcController = AZC_Controller.getInstance();
         Gemeente_Controller gemeenteController = Gemeente_Controller.getInstance();
+        Adres_Controller adresController = Adres_Controller.getInstance();
 
         String naamGemeente;
-        String postcode;
-        String straatnaam;
-        int huisnummer;
         int aantalPlaatsen;
 
         System.out.println("In welke gemeente wil je een AZC plaatsen?");
@@ -28,20 +28,22 @@ public class B_AZC_VoegToe implements IAction {
         if (gemeente != null) {
             System.out.println("Geef de volgende gegevens van het AZC op.");
 
-            // Adres class --> code smell onthouden
-            System.out.print("Postcode: ");
-            postcode = MyScanner.nextLine();
-            System.out.print("Straatnaam: ");
-            straatnaam = MyScanner.nextLine();
-            System.out.print("huisnummer: ");
-            huisnummer = MyScanner.nextInt();
+//            Adres class --> code smell onthouden
+//            System.out.print("Postcode: ");
+//            postcode = MyScanner.nextLine();
+//            System.out.print("Straatnaam: ");
+//            straatnaam = MyScanner.nextLine();
+//            System.out.print("huisnummer: ");
+//            huisnummer = MyScanner.nextInt();
+
+
+            Adres adres = adresController.vulAdresIn();
             System.out.print("Aantal plaatsen: ");
             aantalPlaatsen = MyScanner.nextInt();
-
-            AZC azc = azcController.getAZC(gemeente, postcode, straatnaam, huisnummer);
+            AZC azc = azcController.getAZC(gemeente, adres);
 
             if (azc == null) {
-                gemeenteController.voegLokaalAZCToe(gemeente, new AZC(gemeente, postcode, straatnaam, huisnummer, aantalPlaatsen));
+                gemeenteController.voegLokaalAZCToe(gemeente, new AZC(gemeente, adres, aantalPlaatsen));
                 System.out.println("AZC toegevoegd.");
             }
             else {

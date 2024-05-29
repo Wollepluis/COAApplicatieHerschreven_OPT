@@ -1,6 +1,7 @@
 package utils;
 
 import appModels.AZC;
+import appModels.Adres;
 import appModels.Gemeente;
 
 public class AZC_Controller {
@@ -16,11 +17,11 @@ public class AZC_Controller {
         return instance;
     }
 
-    public AZC getAZC(Gemeente gemeente, String postcode, String straatnaam, int huisnummer) {
+    public AZC getAZC(Gemeente gemeente, Adres adres) {
 
         for (AZC a : gemeente.getLocaleAZCS()) {
 
-            if (postcode.equalsIgnoreCase(a.getPostcode()) && straatnaam.equalsIgnoreCase(a.getStraatnaam()) && huisnummer == a.getHuisnummer()) {
+            if (adres.equals(a.getAdres())) {
                 return a;
             }
         }

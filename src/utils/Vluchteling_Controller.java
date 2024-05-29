@@ -22,6 +22,18 @@ public class Vluchteling_Controller {
         return this.alleVluchtelingen;
     }
 
+    public Vluchteling getVluchteling(String naam) {
+
+        for (Vluchteling v : this. alleVluchtelingen) {
+
+            if (naam.equalsIgnoreCase(v.getNaam())) {
+
+                return v;
+            }
+        }
+        return null;
+    }
+
     public Vluchteling_Controller() {
         this.alleVluchtelingen = new ArrayList<>();
     }

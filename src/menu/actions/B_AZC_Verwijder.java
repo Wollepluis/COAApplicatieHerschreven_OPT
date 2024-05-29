@@ -1,8 +1,10 @@
 package menu.actions;
 
 import appModels.AZC;
+import appModels.Adres;
 import appModels.Gemeente;
 import utils.AZC_Controller;
+import utils.Adres_Controller;
 import utils.Gemeente_Controller;
 import utils.MyScanner;
 
@@ -12,12 +14,10 @@ public class B_AZC_Verwijder implements IAction {
     public void execute() {
 
         AZC_Controller azcController = AZC_Controller.getInstance();
+        Adres_Controller adresController = Adres_Controller.getInstance();
         Gemeente_Controller gemeenteController = Gemeente_Controller.getInstance();
 
         String naamGemeente;
-        String postcode;
-        String straatnaam;
-        int huisnummer;
 
         System.out.println("Uit welke gemeente wilt u een AZC verwijderen?");
         naamGemeente = MyScanner.nextLine();
@@ -29,14 +29,9 @@ public class B_AZC_Verwijder implements IAction {
             if (!gemeente.getLocaleAZCS().isEmpty()) {
 
                 System.out.println("Geef de volgende gegevens van het AZC op.");
-                System.out.print("Postcode: ");
-                postcode = MyScanner.nextLine();
-                System.out.print("Straatnaam: ");
-                straatnaam = MyScanner.nextLine();
-                System.out.print("huisnummer: ");
-                huisnummer = MyScanner.nextInt();
 
-                AZC azc = azcController.getAZC(gemeente, postcode, straatnaam, huisnummer);
+                Adres adres = adresController.vulAdresIn();
+                AZC azc = azcController.getAZC(gemeente, adres);
 
                 if (azc != null) {
 
@@ -49,7 +44,8 @@ public class B_AZC_Verwijder implements IAction {
                         System.out.println("In dit AZC zijn nog vluchtelingen gehuisvest.");
                         System.out.println("Plaats deze vluchtelingen eerst over naar een ander AZC om te verwijderen.");
                     }
-                } else {
+                }
+                else {
                     System.out.println("Dit AZC bestaat niet.");
                 }
             }

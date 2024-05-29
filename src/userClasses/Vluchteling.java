@@ -109,13 +109,13 @@ public class Vluchteling extends Gebruiker {
 
     public Vluchteling(String naam, Land land) {
         super(naam);
-        setNaam(naam);
-        setLandVanHerkomst(land);
-        setGeregistreerd(false);
-        setHeeftVergunning(false);
-        setHeeftPaspoort(false);
-        setRechterToegewezen(false);
-        setPlaatsingInWoning(false);
+        this.setNaam(naam);
+        this.setLandVanHerkomst(land);
+        this.setGeregistreerd(false);
+        this.setHeeftVergunning(false);
+        this.setHeeftPaspoort(false);
+        this.setRechterToegewezen(false);
+        this.setPlaatsingInWoning(false);
     }
 
     public String jaOfNee(boolean var) {

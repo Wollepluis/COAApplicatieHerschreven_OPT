@@ -7,9 +7,7 @@ import java.util.ArrayList;
 public class AZC {
 
     private Gemeente gemeente;
-    private String postcode;
-    private String straatnaam;
-    private int huisnummer;
+    Adres adres;
     private int aantalPlaatsen;
 
     public ArrayList<Vluchteling> gevestigdeVluchtelingen;
@@ -18,16 +16,8 @@ public class AZC {
         this.gemeente = gemeente;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
-    }
-
-    public void setStraatnaam(String straatnaam) {
-        this.straatnaam = straatnaam;
-    }
-
-    public void setHuisnummer(int huisnummer) {
-        this.huisnummer = huisnummer;
+    public void setAdres(Adres adres) {
+        this.adres = adres;
     }
 
     public void setAantalPlaatsen(int aantalPlaatsen) {
@@ -38,27 +28,17 @@ public class AZC {
         return this.gemeente.getNaam();
     }
 
-    public String getPostcode() {
-        return this.postcode;
-    }
-
-    public String getStraatnaam() {
-        return this.straatnaam;
-    }
-
-    public int getHuisnummer() {
-        return this.huisnummer;
+    public Adres getAdres() {
+        return this.adres;
     }
 
     public int getAantalPlaatsen() {
         return this.aantalPlaatsen;
     }
 
-    public AZC(Gemeente gemeente, String postcode, String straatnaam, int huisnummer, int aantalPlaatsen) {
+    public AZC(Gemeente gemeente, Adres adres, int aantalPlaatsen) {
         this.setGemeente(gemeente);
-        this.setPostcode(postcode);
-        this.setStraatnaam(straatnaam);
-        this.setHuisnummer(huisnummer);
+        this.setAdres(adres);
         this.setAantalPlaatsen(aantalPlaatsen);
         this.gevestigdeVluchtelingen  = new ArrayList<>();
     }
